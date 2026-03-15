@@ -51,28 +51,34 @@ body{font-family:'Jost',sans-serif;color:var(--ink);overflow-x:hidden}
 .portrait-card:nth-child(4){animation-delay:.16s}.portrait-card:nth-child(5){animation-delay:.2s}.portrait-card:nth-child(6){animation-delay:.24s}
 .portrait-card:nth-child(7){animation-delay:.28s}.portrait-card:nth-child(8){animation-delay:.32s}.portrait-card:nth-child(9){animation-delay:.36s}
 .portrait-card:active{background:var(--linen)}
-.dashboard-head{padding:22px 22px 12px}
-.dashboard-title{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--moss-mist);margin-bottom:6px}
+.dashboard-head{padding:22px 22px 10px}
+.dashboard-title{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--moss-mist);margin-bottom:5px}
 .dashboard-sub{font-size:11px;font-weight:300;color:var(--ink-ghost)}
-.dash-grid{padding:0 22px 8px}
-.flip-wrap{perspective:1000px}
-.flip-card{position:relative;width:100%;min-height:260px;border:1px solid rgba(141,150,173,.28);background:linear-gradient(145deg,#131828,#161c2f);box-shadow:0 15px 40px rgba(3,5,10,.35);cursor:pointer}
-.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.dash-grid{padding:4px 16px 14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.flip-wrap{perspective:1200px}
+.flip-card{position:relative;width:100%;height:468px;border-radius:18px;cursor:pointer;transform-style:preserve-3d}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
 .flip-inner.flipped{transform:rotateY(180deg)}
-.flip-face{position:absolute;inset:0;padding:18px;backface-visibility:hidden;display:flex;flex-direction:column}
-.flip-front{background:radial-gradient(95% 120% at 92% 2%,rgba(99,179,158,.18),transparent 58%),radial-gradient(85% 85% at 10% 88%,rgba(211,108,162,.15),transparent 55%),linear-gradient(160deg,#121728,#1a2137)}
-.flip-back{background:radial-gradient(95% 120% at 8% 5%,rgba(99,179,158,.12),transparent 55%),linear-gradient(160deg,#171d31,#111725);transform:rotateY(180deg)}
-.flip-eyebrow{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--blush-light)}
-.flip-name{font-family:'Fraunces',serif;font-size:26px;line-height:1.1;color:#EAF3FA;margin-top:4px}
-.flip-bot{font-size:11px;color:var(--ink-ghost);font-style:italic;margin-top:4px}
-.flip-sil{display:flex;justify-content:center;align-items:center;flex:1}
-.flip-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.flip-chip{border:1px solid rgba(141,150,173,.35);padding:8px 9px;background:rgba(22,27,43,.7)}
-.flip-chip-l{font-size:8px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-ghost)}
-.flip-chip-v{font-size:11px;color:#DCE6F1;margin-top:2px}
-.flip-actions{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
-.flip-hint{font-size:10px;color:var(--blush-light);letter-spacing:.8px}
-.flip-open{background:var(--moss);color:var(--parchment);border:1px solid var(--moss-pale);padding:8px 10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;padding:13px 12px;background:#F1EBDE;border:1px solid #D7CEBC;box-shadow:0 6px 20px rgba(0,0,0,.22);color:#2E382E;overflow:hidden}
+.flip-face::before{content:"";position:absolute;inset:9px;border:1px solid #8C9A7C;border-radius:11px;pointer-events:none}
+.flip-face::after{content:"";position:absolute;inset:14px;border:1px solid #B6B094;border-radius:9px;opacity:.55;pointer-events:none}
+.flip-front{background:radial-gradient(70% 45% at 50% 10%,rgba(173,195,152,.2),transparent 70%),#F1EBDE}
+.flip-back{transform:rotateY(180deg);background:radial-gradient(80% 50% at 50% 8%,rgba(173,195,152,.18),transparent 72%),#F1EBDE}
+.flip-eyebrow{font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:#68745F;text-align:center;margin-top:4px}
+.flip-name{font-family:'Fraunces',serif;font-size:20px;line-height:1.05;color:#2A332A;text-align:center;margin-top:8px}
+.flip-bot{font-family:'Cormorant Garamond',serif;font-size:13px;color:#3D493A;font-style:italic;text-align:center;margin-top:2px}
+.flip-sil{display:flex;justify-content:center;align-items:center;height:158px;margin:10px 0 6px}
+.flip-family{font-family:'Cormorant Garamond',serif;font-size:17px;text-align:center;color:#394238;margin-top:auto}
+.flip-mini{font-size:10px;color:#5F6D57;text-align:center;margin-top:2px}
+.flip-rule{height:1px;background:#CFC5B0;margin:8px 6px}
+.flip-section{font-family:'Fraunces',serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#4D5A46;text-align:center;background:#E5DECC;padding:4px 8px;margin:6px 0}
+.flip-meta{display:grid;grid-template-columns:auto 1fr;gap:5px 8px;font-size:11px;line-height:1.35;position:relative;z-index:1}
+.flip-k{font-weight:500;color:#374234;white-space:nowrap}
+.flip-v{color:#2C332C}
+.flip-fact{margin-top:auto;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.25;color:#394337;font-style:italic;padding:8px;border-top:1px solid #CFC5B0}
+.flip-actions{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px;position:relative;z-index:2}
+.flip-hint{font-size:9px;color:#6C775F;letter-spacing:.4px}
+.flip-open{background:#E5DECC;color:#2E382E;border:1px solid #9AA488;padding:6px 8px;font-size:9px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;font-weight:500}
 .pip{width:5px;height:5px;border-radius:50%;position:absolute;top:10px;right:10px}
 .pip.thriving{background:var(--moss-light)}.pip.ok{background:var(--ochre)}.pip.needs-love{background:var(--rust)}
 .portrait-sil{width:64px;height:68px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:10px}
@@ -465,29 +471,44 @@ function TableRow({plant,index,onSelect,onUpdate}){
 
 function PlantDashboardCard({plant,onSelect}){
   const [flipped,setFlipped]=useState(false);
+  const origin=ORIGINS[plant.name]?.country||"Unknown";
+  const difficulty=plant.tags?.includes("easy")?"Easy":plant.tags?.includes("rare")?"Special care":"Moderate";
   return(
     <div className="flip-wrap">
       <div className="flip-card" onClick={()=>setFlipped(v=>!v)}>
         <div className={`flip-inner ${flipped?"flipped":""}`}>
           <div className="flip-face flip-front">
-            <div className="flip-eyebrow">Plant card · tap to flip</div>
+            <div className="flip-eyebrow">Collection card</div>
             <div className="flip-name">{plant.name}</div>
             <div className="flip-bot">{plant.botanical}</div>
             <div className="flip-sil"><Sil name={plant.name} size={120} fill="var(--moss-pale)"/></div>
-            <div className="flip-actions">
-              <span className="flip-hint">Health: {HL[plant.health]}</span>
-              <Ic n="sparkle" size={13} stroke="var(--blush-light)" sw={1.7}/>
-            </div>
+            <div className="flip-family">{plant.family} Family</div>
+            <div className="flip-mini">Health · {HL[plant.health]}</div>
+            <div className="flip-actions"><span className="flip-hint">Tap to flip</span><Ic n="sparkle" size={13} stroke="#6C775F" sw={1.7}/></div>
           </div>
           <div className="flip-face flip-back">
-            <div className="flip-eyebrow">Back side · quick details</div>
-            <div className="flip-name" style={{fontSize:21}}>{plant.nickname||plant.name}</div>
+            <div className="flip-name" style={{fontSize:16,marginTop:4}}>Plant Notes</div>
+            <div className="flip-rule"/>
             <div className="flip-meta">
-              <div className="flip-chip"><div className="flip-chip-l">Room</div><div className="flip-chip-v">{plant.room||"Unplaced"}</div></div>
-              <div className="flip-chip"><div className="flip-chip-l">Light</div><div className="flip-chip-v">{plant.light}</div></div>
-              <div className="flip-chip"><div className="flip-chip-l">Water</div><div className="flip-chip-v">{plant.water}</div></div>
-              <div className="flip-chip"><div className="flip-chip-l">Family</div><div className="flip-chip-v">{plant.family}</div></div>
+              <div className="flip-k">Common</div><div className="flip-v">{plant.name}</div>
+              <div className="flip-k">Scientific</div><div className="flip-v"><em>{plant.botanical}</em></div>
+              <div className="flip-k">Family</div><div className="flip-v">{plant.family}</div>
+              <div className="flip-k">Origin</div><div className="flip-v">{origin}</div>
             </div>
+            <div className="flip-section">Care guide</div>
+            <div className="flip-meta">
+              <div className="flip-k">Light</div><div className="flip-v">{plant.light}</div>
+              <div className="flip-k">Water</div><div className="flip-v">{plant.water}</div>
+              <div className="flip-k">Humidity</div><div className="flip-v">{plant.humidity}</div>
+              <div className="flip-k">Room</div><div className="flip-v">{plant.room||"Unplaced"}</div>
+            </div>
+            <div className="flip-section">Growth info</div>
+            <div className="flip-meta">
+              <div className="flip-k">Category</div><div className="flip-v">{plant.category}</div>
+              <div className="flip-k">Difficulty</div><div className="flip-v">{difficulty}</div>
+              <div className="flip-k">Toxicity</div><div className="flip-v">{plant.toxic?"Toxic to pets":"Pet-friendly"}</div>
+            </div>
+            <div className="flip-fact">{UNDERRATED[plant.name]||"This specimen is part of your curated indoor garden story."}</div>
             <div className="flip-actions">
               <span className="flip-hint">Tap card again to return</span>
               <button className="flip-open" onClick={(e)=>{e.stopPropagation();onSelect(plant);}}>Open full profile</button>
@@ -521,33 +542,12 @@ function GardenView({plants,filter,setFilter,search,setSearch,viewMode,setViewMo
           <button className={`vtoggle${viewMode==="table"?" active":""}`} onClick={()=>setViewMode("table")}><Ic n="list" size={15} sw={1.5}/></button>
         </div>
       </div>
-      {featured&&(
-        <>
-          <div className="dashboard-head">
-            <div className="dashboard-title">Dashboard card prototype</div>
-            <div className="dashboard-sub">This is a first mock of the flip-card interaction for individual plants.</div>
-          </div>
-          <div className="dash-grid">
-            <PlantDashboardCard plant={featured} onSelect={onSelect}/>
-          </div>
-        </>
-      )}
+      <div className="dashboard-head">
+        <div className="dashboard-title">Plant dashboard cards</div>
+        <div className="dashboard-sub">Each plant is now an interactive front/back botanical card.</div>
+      </div>
+      {filtered.length>0&&<div className="dash-grid">{filtered.map(p=><PlantDashboardCard key={`dash-${p.id}`} plant={p} onSelect={onSelect}/>)}</div>}
       {filtered.length===0&&<div className="empty"><h3>No plants found</h3><p>Try a different filter or search term.</p></div>}
-      {viewMode==="grid"&&filtered.length>0&&(
-        <>
-          <div className="section-head"><span className="section-head-title">All plants</span><span className="section-head-line"/><span className="section-head-count">{filtered.length}</span></div>
-          <div className="portrait-grid">
-            {filtered.map(p=>(
-              <div key={p.id} className="portrait-card" onClick={()=>onSelect(p)}>
-                <div className={`pip ${p.health}`}/>
-                <div className="portrait-sil"><Sil name={p.name} size={56} fill="var(--moss-mid)"/></div>
-                <div className="portrait-nick">{p.nickname||""}</div>
-                <div className="portrait-name">{p.name}</div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
       {viewMode==="table"&&filtered.length>0&&(
         <div>
           {filtered.map((p,i)=>(
