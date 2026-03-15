@@ -4,12 +4,12 @@ const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
-  --ink:#1C1A14;--ink-mid:#5C5444;--ink-faint:#8C8070;--ink-ghost:#B0A490;
-  --parchment:#EDE5D4;--linen:#E2D8C4;--linen-dark:#CFC4AC;
-  --clay:#6B5A3E;--clay-light:#A89070;
-  --moss:#2E3A28;--moss-mid:#3D5035;--moss-light:#5A7050;--moss-pale:#8AA880;--moss-mist:#D4DDD0;
-  --ochre:#8A7040;--rust:#7A4030;
-  --blush:#D4A8A0;--blush-light:#E8C8C2;--blush-mist:#F2E4E1;--blush-deep:#B08078;
+  --ink:#0E0F17;--ink-mid:#2A2F3C;--ink-faint:#586074;--ink-ghost:#8D96AD;
+  --parchment:#151927;--linen:#1A1F30;--linen-dark:#252B3F;
+  --clay:#3A4158;--clay-light:#637197;
+  --moss:#152726;--moss-mid:#1D3835;--moss-light:#2D5A52;--moss-pale:#63B39E;--moss-mist:#B9E2D6;
+  --ochre:#A8814E;--rust:#A05063;
+  --blush:#A86D8D;--blush-light:#C58DA8;--blush-mist:#E5C6D8;--blush-deep:#D36CA2;
   --border:rgba(28,26,20,.08);--border-md:rgba(28,26,20,.14);--border-dk:rgba(28,26,20,.22);
   --shadow-lg:0 8px 40px rgba(28,26,20,.18),0 2px 8px rgba(28,26,20,.10);
 }
@@ -51,6 +51,28 @@ body{font-family:'Jost',sans-serif;color:var(--ink);overflow-x:hidden}
 .portrait-card:nth-child(4){animation-delay:.16s}.portrait-card:nth-child(5){animation-delay:.2s}.portrait-card:nth-child(6){animation-delay:.24s}
 .portrait-card:nth-child(7){animation-delay:.28s}.portrait-card:nth-child(8){animation-delay:.32s}.portrait-card:nth-child(9){animation-delay:.36s}
 .portrait-card:active{background:var(--linen)}
+.dashboard-head{padding:22px 22px 12px}
+.dashboard-title{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--moss-mist);margin-bottom:6px}
+.dashboard-sub{font-size:11px;font-weight:300;color:var(--ink-ghost)}
+.dash-grid{padding:0 22px 8px}
+.flip-wrap{perspective:1000px}
+.flip-card{position:relative;width:100%;min-height:260px;border:1px solid rgba(141,150,173,.28);background:linear-gradient(145deg,#131828,#161c2f);box-shadow:0 15px 40px rgba(3,5,10,.35);cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.flip-inner.flipped{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;padding:18px;backface-visibility:hidden;display:flex;flex-direction:column}
+.flip-front{background:radial-gradient(95% 120% at 92% 2%,rgba(99,179,158,.18),transparent 58%),radial-gradient(85% 85% at 10% 88%,rgba(211,108,162,.15),transparent 55%),linear-gradient(160deg,#121728,#1a2137)}
+.flip-back{background:radial-gradient(95% 120% at 8% 5%,rgba(99,179,158,.12),transparent 55%),linear-gradient(160deg,#171d31,#111725);transform:rotateY(180deg)}
+.flip-eyebrow{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--blush-light)}
+.flip-name{font-family:'Fraunces',serif;font-size:26px;line-height:1.1;color:#EAF3FA;margin-top:4px}
+.flip-bot{font-size:11px;color:var(--ink-ghost);font-style:italic;margin-top:4px}
+.flip-sil{display:flex;justify-content:center;align-items:center;flex:1}
+.flip-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.flip-chip{border:1px solid rgba(141,150,173,.35);padding:8px 9px;background:rgba(22,27,43,.7)}
+.flip-chip-l{font-size:8px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-ghost)}
+.flip-chip-v{font-size:11px;color:#DCE6F1;margin-top:2px}
+.flip-actions{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.flip-hint{font-size:10px;color:var(--blush-light);letter-spacing:.8px}
+.flip-open{background:var(--moss);color:var(--parchment);border:1px solid var(--moss-pale);padding:8px 10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
 .pip{width:5px;height:5px;border-radius:50%;position:absolute;top:10px;right:10px}
 .pip.thriving{background:var(--moss-light)}.pip.ok{background:var(--ochre)}.pip.needs-love{background:var(--rust)}
 .portrait-sil{width:64px;height:68px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:10px}
@@ -441,8 +463,45 @@ function TableRow({plant,index,onSelect,onUpdate}){
   );
 }
 
+function PlantDashboardCard({plant,onSelect}){
+  const [flipped,setFlipped]=useState(false);
+  return(
+    <div className="flip-wrap">
+      <div className="flip-card" onClick={()=>setFlipped(v=>!v)}>
+        <div className={`flip-inner ${flipped?"flipped":""}`}>
+          <div className="flip-face flip-front">
+            <div className="flip-eyebrow">Plant card · tap to flip</div>
+            <div className="flip-name">{plant.name}</div>
+            <div className="flip-bot">{plant.botanical}</div>
+            <div className="flip-sil"><Sil name={plant.name} size={120} fill="var(--moss-pale)"/></div>
+            <div className="flip-actions">
+              <span className="flip-hint">Health: {HL[plant.health]}</span>
+              <Ic n="sparkle" size={13} stroke="var(--blush-light)" sw={1.7}/>
+            </div>
+          </div>
+          <div className="flip-face flip-back">
+            <div className="flip-eyebrow">Back side · quick details</div>
+            <div className="flip-name" style={{fontSize:21}}>{plant.nickname||plant.name}</div>
+            <div className="flip-meta">
+              <div className="flip-chip"><div className="flip-chip-l">Room</div><div className="flip-chip-v">{plant.room||"Unplaced"}</div></div>
+              <div className="flip-chip"><div className="flip-chip-l">Light</div><div className="flip-chip-v">{plant.light}</div></div>
+              <div className="flip-chip"><div className="flip-chip-l">Water</div><div className="flip-chip-v">{plant.water}</div></div>
+              <div className="flip-chip"><div className="flip-chip-l">Family</div><div className="flip-chip-v">{plant.family}</div></div>
+            </div>
+            <div className="flip-actions">
+              <span className="flip-hint">Tap card again to return</span>
+              <button className="flip-open" onClick={(e)=>{e.stopPropagation();onSelect(plant);}}>Open full profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function GardenView({plants,filter,setFilter,search,setSearch,viewMode,setViewMode,onSelect,onUpdate}){
   const filtered=plants.filter(p=>{const mc=filter==="All"||p.category===filter;const ms=!search||[p.name,p.botanical,p.nickname].some(v=>v?.toLowerCase().includes(search.toLowerCase()));return mc&&ms;});
+  const featured=filtered[0]||plants[0];
   return(
     <>
       <div className="garden-scene">
@@ -462,6 +521,17 @@ function GardenView({plants,filter,setFilter,search,setSearch,viewMode,setViewMo
           <button className={`vtoggle${viewMode==="table"?" active":""}`} onClick={()=>setViewMode("table")}><Ic n="list" size={15} sw={1.5}/></button>
         </div>
       </div>
+      {featured&&(
+        <>
+          <div className="dashboard-head">
+            <div className="dashboard-title">Dashboard card prototype</div>
+            <div className="dashboard-sub">This is a first mock of the flip-card interaction for individual plants.</div>
+          </div>
+          <div className="dash-grid">
+            <PlantDashboardCard plant={featured} onSelect={onSelect}/>
+          </div>
+        </>
+      )}
       {filtered.length===0&&<div className="empty"><h3>No plants found</h3><p>Try a different filter or search term.</p></div>}
       {viewMode==="grid"&&filtered.length>0&&(
         <>
