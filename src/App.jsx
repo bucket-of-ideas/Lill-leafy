@@ -522,6 +522,7 @@ function PlantDashboardCard({plant,onSelect}){
 
 function GardenView({plants,filter,setFilter,search,setSearch,viewMode,setViewMode,onSelect,onUpdate}){
   const filtered=plants.filter(p=>{const mc=filter==="All"||p.category===filter;const ms=!search||[p.name,p.botanical,p.nickname].some(v=>v?.toLowerCase().includes(search.toLowerCase()));return mc&&ms;});
+  const featured=filtered[0]||plants[0];
   return(
     <>
       <div className="garden-scene">
