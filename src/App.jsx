@@ -4,12 +4,12 @@ const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
-  --ink:#1C1A14;--ink-mid:#5C5444;--ink-faint:#8C8070;--ink-ghost:#B0A490;
-  --parchment:#EDE5D4;--linen:#E2D8C4;--linen-dark:#CFC4AC;
-  --clay:#6B5A3E;--clay-light:#A89070;
-  --moss:#2E3A28;--moss-mid:#3D5035;--moss-light:#5A7050;--moss-pale:#8AA880;--moss-mist:#D4DDD0;
-  --ochre:#8A7040;--rust:#7A4030;
-  --blush:#D4A8A0;--blush-light:#E8C8C2;--blush-mist:#F2E4E1;--blush-deep:#B08078;
+  --ink:#0E0F17;--ink-mid:#2A2F3C;--ink-faint:#586074;--ink-ghost:#8D96AD;
+  --parchment:#151927;--linen:#1A1F30;--linen-dark:#252B3F;
+  --clay:#3A4158;--clay-light:#637197;
+  --moss:#152726;--moss-mid:#1D3835;--moss-light:#2D5A52;--moss-pale:#63B39E;--moss-mist:#B9E2D6;
+  --ochre:#A8814E;--rust:#A05063;
+  --blush:#A86D8D;--blush-light:#C58DA8;--blush-mist:#E5C6D8;--blush-deep:#D36CA2;
   --border:rgba(28,26,20,.08);--border-md:rgba(28,26,20,.14);--border-dk:rgba(28,26,20,.22);
   --shadow-lg:0 8px 40px rgba(28,26,20,.18),0 2px 8px rgba(28,26,20,.10);
 }
@@ -51,6 +51,34 @@ body{font-family:'Jost',sans-serif;color:var(--ink);overflow-x:hidden}
 .portrait-card:nth-child(4){animation-delay:.16s}.portrait-card:nth-child(5){animation-delay:.2s}.portrait-card:nth-child(6){animation-delay:.24s}
 .portrait-card:nth-child(7){animation-delay:.28s}.portrait-card:nth-child(8){animation-delay:.32s}.portrait-card:nth-child(9){animation-delay:.36s}
 .portrait-card:active{background:var(--linen)}
+.dashboard-head{padding:22px 22px 10px}
+.dashboard-title{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--moss-mist);margin-bottom:5px}
+.dashboard-sub{font-size:11px;font-weight:300;color:var(--ink-ghost)}
+.dash-grid{padding:4px 16px 14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.flip-wrap{perspective:1200px}
+.flip-card{position:relative;width:100%;height:468px;border-radius:18px;cursor:pointer;transform-style:preserve-3d}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
+.flip-inner.flipped{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;padding:13px 12px;background:#F1EBDE;border:1px solid #D7CEBC;box-shadow:0 6px 20px rgba(0,0,0,.22);color:#2E382E;overflow:hidden}
+.flip-face::before{content:"";position:absolute;inset:9px;border:1px solid #8C9A7C;border-radius:11px;pointer-events:none}
+.flip-face::after{content:"";position:absolute;inset:14px;border:1px solid #B6B094;border-radius:9px;opacity:.55;pointer-events:none}
+.flip-front{background:radial-gradient(70% 45% at 50% 10%,rgba(173,195,152,.2),transparent 70%),#F1EBDE}
+.flip-back{transform:rotateY(180deg);background:radial-gradient(80% 50% at 50% 8%,rgba(173,195,152,.18),transparent 72%),#F1EBDE}
+.flip-eyebrow{font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:#68745F;text-align:center;margin-top:4px}
+.flip-name{font-family:'Fraunces',serif;font-size:20px;line-height:1.05;color:#2A332A;text-align:center;margin-top:8px}
+.flip-bot{font-family:'Cormorant Garamond',serif;font-size:13px;color:#3D493A;font-style:italic;text-align:center;margin-top:2px}
+.flip-sil{display:flex;justify-content:center;align-items:center;height:158px;margin:10px 0 6px}
+.flip-family{font-family:'Cormorant Garamond',serif;font-size:17px;text-align:center;color:#394238;margin-top:auto}
+.flip-mini{font-size:10px;color:#5F6D57;text-align:center;margin-top:2px}
+.flip-rule{height:1px;background:#CFC5B0;margin:8px 6px}
+.flip-section{font-family:'Fraunces',serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#4D5A46;text-align:center;background:#E5DECC;padding:4px 8px;margin:6px 0}
+.flip-meta{display:grid;grid-template-columns:auto 1fr;gap:5px 8px;font-size:11px;line-height:1.35;position:relative;z-index:1}
+.flip-k{font-weight:500;color:#374234;white-space:nowrap}
+.flip-v{color:#2C332C}
+.flip-fact{margin-top:auto;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.25;color:#394337;font-style:italic;padding:8px;border-top:1px solid #CFC5B0}
+.flip-actions{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px;position:relative;z-index:2}
+.flip-hint{font-size:9px;color:#6C775F;letter-spacing:.4px}
+.flip-open{background:#E5DECC;color:#2E382E;border:1px solid #9AA488;padding:6px 8px;font-size:9px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;font-weight:500}
 .pip{width:5px;height:5px;border-radius:50%;position:absolute;top:10px;right:10px}
 .pip.thriving{background:var(--moss-light)}.pip.ok{background:var(--ochre)}.pip.needs-love{background:var(--rust)}
 .portrait-sil{width:64px;height:68px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:10px}
@@ -357,7 +385,7 @@ function getVoice(plant){
   const lw=cl.filter(e=>e.type==="watered").sort((a,b)=>new Date(b.date)-new Date(a.date))[0];
   const days=lw?Math.floor((Date.now()-new Date(lw.date))/86400000):null;
   const V={"Monstera Deliciosa":()=>days>10?`${days} days without water. I'm not angry — just noting it for the record.`:plant.health==="needs-love"?"I am struggling. Dramatically.":"Doing well. Plotting a new fenestration.","String of Hearts":()=>days>14?"Still here. The neglect suits me, honestly.":"Trailing along. Quietly thriving.","Dwarf Chenille Plant":()=>plant.health==="needs-love"?"The catkins are looking less dramatic. Unacceptable.":"Still the most interesting plant in this room.","Salix Caprea Pendula":()=>plant.health==="thriving"?"Ancient and unbothered. The weeping is just my aesthetic.":"I have survived centuries of rain. I will survive this.","Money Tree":()=>plant.health==="thriving"?"Prosperous. Grounded. Five elements in perfect harmony.":"Even fortune favours those who remember to water.","Fiddle Leaf Fig":()=>plant.health==="needs-love"?"You moved me, didn't you. I will remember this.":plant.health==="ok"?"Things are tolerable. Not saying they're good.":"The light is exactly right. I may allow a new leaf.","Hoya Burtoniae":()=>"Still here. Still waiting to bloom. Good things take time.","Golden Pothos":()=>days>14?"Honestly I've been through worse. Still here.":"Alive, well, and incredibly easy about the whole thing.","English Ivy":()=>plant.health==="thriving"?"Cool and calm. I have covered cathedrals. This shelf is nothing.":"A little water and I'll be climbing again.","Swiss Cheese Plant":()=>"Every hole in my leaves was earned through a storm.","African Milk Tree":()=>plant.health==="thriving"?"Standing tall. A fence of one.":"I store water in my stem for moments exactly like this.","Pink Princess Philodendron":()=>"My pink is not an accident. It is a genetic choice, but still mine.","Philodendron White Princess":()=>"No two of my leaves will ever be the same. I find that beautiful.","Spider Plant Bonnie":()=>"My curls are not an accident. I was made this way and I love it.","Croton Petra":()=>plant.health==="thriving"?"I am having a very colourful day.":"Less colour when unhappy. Give me more light.","Climbing Sea Onion":()=>"I climb from a single bulb. Slow, deliberate, quietly extraordinary.","Christmas Cactus":()=>"I bloom when the world is dark. That's the whole point.","Chocolate Soldier Plant":()=>"Sun-tolerant, drought-resistant, unabashedly velvet.","String of Arrows":()=>"Pointed in a direction. Trailing toward whatever comes next.","Jade Plant":()=>plant.health==="thriving"?"I may outlive everyone in this building.":"A little dry. I'll store it for later.","Moonlight Philodendron":()=>"My new leaves glow. By the time you notice, I've already grown.","Olea Europaea Mission":()=>plant.health==="thriving"?"I have been tended by human hands for eight thousand years. I know patience.":"The Mediterranean made me. I accept no substitutes."};
-  return V[plant.name]?.()??="Growing quietly. Finding my light.";
+  return V[plant.name]?.() ?? "Growing quietly. Finding my light.";
 }
 
 function fmtFull(d){return new Date(d).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});}
@@ -441,6 +469,57 @@ function TableRow({plant,index,onSelect,onUpdate}){
   );
 }
 
+function PlantDashboardCard({plant,onSelect}){
+  const [flipped,setFlipped]=useState(false);
+  const origin=ORIGINS[plant.name]?.country||"Unknown";
+  const difficulty=plant.tags?.includes("easy")?"Easy":plant.tags?.includes("rare")?"Special care":"Moderate";
+  return(
+    <div className="flip-wrap">
+      <div className="flip-card" onClick={()=>setFlipped(v=>!v)}>
+        <div className={`flip-inner ${flipped?"flipped":""}`}>
+          <div className="flip-face flip-front">
+            <div className="flip-eyebrow">Collection card</div>
+            <div className="flip-name">{plant.name}</div>
+            <div className="flip-bot">{plant.botanical}</div>
+            <div className="flip-sil"><Sil name={plant.name} size={120} fill="var(--moss-pale)"/></div>
+            <div className="flip-family">{plant.family} Family</div>
+            <div className="flip-mini">Health · {HL[plant.health]}</div>
+            <div className="flip-actions"><span className="flip-hint">Tap to flip</span><Ic n="sparkle" size={13} stroke="#6C775F" sw={1.7}/></div>
+          </div>
+          <div className="flip-face flip-back">
+            <div className="flip-name" style={{fontSize:16,marginTop:4}}>Plant Notes</div>
+            <div className="flip-rule"/>
+            <div className="flip-meta">
+              <div className="flip-k">Common</div><div className="flip-v">{plant.name}</div>
+              <div className="flip-k">Scientific</div><div className="flip-v"><em>{plant.botanical}</em></div>
+              <div className="flip-k">Family</div><div className="flip-v">{plant.family}</div>
+              <div className="flip-k">Origin</div><div className="flip-v">{origin}</div>
+            </div>
+            <div className="flip-section">Care guide</div>
+            <div className="flip-meta">
+              <div className="flip-k">Light</div><div className="flip-v">{plant.light}</div>
+              <div className="flip-k">Water</div><div className="flip-v">{plant.water}</div>
+              <div className="flip-k">Humidity</div><div className="flip-v">{plant.humidity}</div>
+              <div className="flip-k">Room</div><div className="flip-v">{plant.room||"Unplaced"}</div>
+            </div>
+            <div className="flip-section">Growth info</div>
+            <div className="flip-meta">
+              <div className="flip-k">Category</div><div className="flip-v">{plant.category}</div>
+              <div className="flip-k">Difficulty</div><div className="flip-v">{difficulty}</div>
+              <div className="flip-k">Toxicity</div><div className="flip-v">{plant.toxic?"Toxic to pets":"Pet-friendly"}</div>
+            </div>
+            <div className="flip-fact">{UNDERRATED[plant.name]||"This specimen is part of your curated indoor garden story."}</div>
+            <div className="flip-actions">
+              <span className="flip-hint">Tap card again to return</span>
+              <button className="flip-open" onClick={(e)=>{e.stopPropagation();onSelect(plant);}}>Open full profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function GardenView({plants,filter,setFilter,search,setSearch,viewMode,setViewMode,onSelect,onUpdate}){
   const filtered=plants.filter(p=>{const mc=filter==="All"||p.category===filter;const ms=!search||[p.name,p.botanical,p.nickname].some(v=>v?.toLowerCase().includes(search.toLowerCase()));return mc&&ms;});
   return(
@@ -462,22 +541,12 @@ function GardenView({plants,filter,setFilter,search,setSearch,viewMode,setViewMo
           <button className={`vtoggle${viewMode==="table"?" active":""}`} onClick={()=>setViewMode("table")}><Ic n="list" size={15} sw={1.5}/></button>
         </div>
       </div>
+      <div className="dashboard-head">
+        <div className="dashboard-title">Plant dashboard cards</div>
+        <div className="dashboard-sub">Each plant is now an interactive front/back botanical card.</div>
+      </div>
+      {filtered.length>0&&<div className="dash-grid">{filtered.map(p=><PlantDashboardCard key={`dash-${p.id}`} plant={p} onSelect={onSelect}/>)}</div>}
       {filtered.length===0&&<div className="empty"><h3>No plants found</h3><p>Try a different filter or search term.</p></div>}
-      {viewMode==="grid"&&filtered.length>0&&(
-        <>
-          <div className="section-head"><span className="section-head-title">All plants</span><span className="section-head-line"/><span className="section-head-count">{filtered.length}</span></div>
-          <div className="portrait-grid">
-            {filtered.map(p=>(
-              <div key={p.id} className="portrait-card" onClick={()=>onSelect(p)}>
-                <div className={`pip ${p.health}`}/>
-                <div className="portrait-sil"><Sil name={p.name} size={56} fill="var(--moss-mid)"/></div>
-                <div className="portrait-nick">{p.nickname||""}</div>
-                <div className="portrait-name">{p.name}</div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
       {viewMode==="table"&&filtered.length>0&&(
         <div>
           {filtered.map((p,i)=>(
